@@ -20,11 +20,11 @@ void main(void)
 	// variable predefinie OBLIGATOIRE en OUTPUT
 	// varying vec4 gl_Position
 
-	// ROTATION 2D (pivot)
+	// ROTATION 3D (pivot Y)
 	mat4 rotationMatrix = mat4(
-					cos(u_Time), 0, -sin(u_Time), 0.0, 	// 1ere colonne
-					0, 1, 1.0, 0.0,	// 2eme colonne
-					sin(u_Time), 0.0, cos(u_Time), 0.0,						// 3eme colonne
+					cos(u_Time), 0.0, -sin(u_Time), 0.0, 	// 1ere colonne
+					0.0, 1.0, 1.0, 0.0,						// 2eme colonne
+					sin(u_Time), 0.0, cos(u_Time), 0.0,		// 3eme colonne
 					0.0, 0.0, 0.0, 1.0						// 4eme colonne
 				);
 
@@ -38,11 +38,11 @@ void main(void)
 	mat4 translationMatrix = mat4(
 						1.0, 0.0, 0.0, 0.0,
 						0.0, 1.0, 0.0, 0.0,
-						0.0, 0.0, 1, 0.0,
-						0.0, 0.0, -100, 1.0
+						0.0, 0.0, 1.0, 0.0,
+						0.0, 0.0, -10.0, 1.0
 				);				
 
-	mat4 worldMatrix = translationMatrix * rotationMatrix ;//* scaleMatrix;
+	mat4 worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
 	
 	// Projection perspectiv
 	float width = 1280.0;
