@@ -22,8 +22,8 @@ GLuint IBO;
 // format X,Y,Z, ?, ?, ?, ?, ? = 8 floats par vertex
 #include "DragonData.h"
 
-float numVertices = _countof(DragonVertices);
-float numIndices = _countof(DragonIndices);
+int numVertices = _countof(DragonVertices);
+int numIndices = _countof(DragonIndices);
 
 void Initialize()
 {
@@ -77,8 +77,9 @@ void Update() {
 
 void Render() {
 
-	glClearColor(0.f, 1.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT); // | GL_DEPTH_BUFFER_BIT
+	glClearColor(0.f, 0.f, 0.f, 0.f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // | GL_DEPTH_BUFFER_BIT
+	glEnable(GL_DEPTH);
 
 	BasicProgram.Bind();
 	auto programID = BasicProgram.Get();
@@ -115,7 +116,7 @@ int main(int argc, char* argv[])
 	// GLUT_RGBA :  color buffer 32 bits
 	// GLUT_DOUBLE : double buffering
 	// GLUT_DEPTH : ajoute un buffer pour le depth test
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
 	glutCreateWindow("basic 3D");
 	
