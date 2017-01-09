@@ -3,4 +3,5 @@
 *VC
 OpenGL/OpenGL.VC.db
 ./OpenGL/x64/
-*
+OpenGL/basic3D/x64/Debug/
+
