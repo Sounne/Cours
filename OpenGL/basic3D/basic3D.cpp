@@ -18,6 +18,7 @@
 GLShader BasicProgram;
 GLuint VBO;
 GLuint IBO;
+GLuint VAO;
 
 // format X,Y,Z, ?, ?, ?, ?, ? = 8 floats par vertex
 #include "DragonData.h"
@@ -29,12 +30,20 @@ void Initialize()
 {
 	glewInit();
 
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO); //	ATTENTION : un VAO enregistre les parametres suivant :
+							//	glBindBuffer(GL_(ELEMENT)_ARRAY_BUFFER)
+							//	glEnable/DisableVertexAttribArray()
+							//	glVertexAttribPointer()
 	glGenBuffers(1, &VBO);
 	// notez la relation en _ARRAY_ et DrawArrays
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER
 		, numVertices*sizeof(float), DragonVertices
 		, GL_STATIC_DRAW);
+
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &IBO);
@@ -67,6 +76,7 @@ void Initialize()
 void Shutdown()
 {
 	//BasicProgram.Destroy();
+	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &IBO);
 }
