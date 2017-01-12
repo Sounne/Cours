@@ -1,4 +1,0 @@
-﻿  basic3D.cpp
-c:\users\b.mazuc\documents\visual studio 2015\projects\opengl\basic3d\dragondata.h(4): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-c:\users\b.mazuc\documents\visual studio 2015\projects\opengl\basic3d\dragondata.h(4): warning C4305: 'initializing': truncation from 'double' to 'float'
-  basic3D.vcxproj -> C:\Users\b.mazuc\Documents\Visual Studio 2015\Projects\OpenGL\x64\Debug\basic3D.exe
