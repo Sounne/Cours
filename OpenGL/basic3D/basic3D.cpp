@@ -6,6 +6,7 @@
 #pragma comment (lib, "freeglut.lib")
 #pragma comment (lib, "glew32.lib")
 #pragma comment (lib, "opengl32.lib")
+#pragma comment (lib, "IsartLib.lib")
 #endif
 
 #include <iostream>
@@ -14,6 +15,9 @@
 #include "GL/freeglut.h"
 
 #include "../common/GLShader.h"
+#include "common/mat4.h"
+
+#define PI 3.14159265f
 
 GLShader BasicProgram;
 GLuint VBO;
@@ -26,9 +30,56 @@ GLuint VAO;
 int numVertices = _countof(DragonVertices);
 int numIndices = _countof(DragonIndices);
 
+float moveX = 0.f;
+float moveY = 0.f;
+float moveZ = 0.f;
+
+float deltaTime = 0.f;
+float oldTimeSinceStart = 0.f;
+float speed = 5.f;
+
+auto rad(float angle) -> float
+{
+	float rad = angle * (PI / 180.f);
+	return rad;
+}
+
+void KeyboardDown(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+		case 'w' :
+		case 'z' :
+			moveY += speed * deltaTime;
+			break;
+		case 's' :
+			moveY -= speed * deltaTime;
+			break;
+		case 'q' :
+		case 'a' :
+			moveX -= speed * deltaTime;
+			break;
+		case 'd' :
+			moveX += speed * deltaTime;
+			break;
+		default: break;
+	}
+}
+
+void MouseWheel(int button, int dir, int x, int y)
+{
+	if (dir > 0)
+		moveZ += speed * deltaTime;
+	else if (dir < 0)
+		moveZ -= speed * deltaTime;
+}
+
 void Initialize()
 {
 	glewInit();
+
+	glutKeyboardFunc(KeyboardDown);
+	glutMouseWheelFunc(MouseWheel);
 
 	// extension .v, .vs, .vert, *.glsl ou autre
 	BasicProgram.LoadShader(GL_VERTEX_SHADER, "basic3D.vs");
@@ -69,7 +120,7 @@ void Initialize()
 
 void Shutdown()
 {
-	//BasicProgram.Destroy();
+	BasicProgram.Destroy();
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &IBO);
@@ -93,20 +144,25 @@ void Render() {
 
 	glBindVertexArray(VAO);
 
-	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	//auto positionLocation = glGetAttribLocation(programID, "a_Position");
-	//glVertexAttribPointer(positionLocation, 3, GL_FLOAT, false, 8 * sizeof(float), 0);
-	//glEnableVertexAttribArray(positionLocation);
+	float timeSinceStart = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+	deltaTime = timeSinceStart - oldTimeSinceStart;
+	oldTimeSinceStart = timeSinceStart;
+	
+	auto worldLocation = glGetUniformLocation(programID, "worldMatrix");
+	maths::Mat4 identity = maths::Mat4::identity;
+	maths::Mat4 worldMatrix = identity.Translate(0.f, 0.f, -10.f) * identity.RotateY(timeSinceStart) * identity.Scale(0.1f);
+	glUniformMatrix4fv(worldLocation, 1, GL_FALSE, worldMatrix.val);
 
-	float timeInSeconds = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-	auto timeLocation = glGetUniformLocation(programID, "u_Time");
-	glUniform1f(timeLocation, timeInSeconds);
+	auto projectionLocation = glGetUniformLocation(programID, "projectionMatrix");
+	maths::Mat4 projectionMatrix = identity.Perspective(1280.f, 720.f, rad(45.f), 0.1f, 1000.f);
+	glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, projectionMatrix.val);
+	
+	auto viewLocation = glGetUniformLocation(programID, "viewMatrix");
+	maths::Mat4 viewMatrix = identity.Translate(moveX, moveY, moveZ);
+	glUniformMatrix4fv(viewLocation, 1, GL_FALSE, viewMatrix.val);
 
-	// idem mais avec un Index Buffer (IBO)
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 	glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, nullptr);
 
-	//glDisableVertexAttribArray(positionLocation);
 	glBindVertexArray(0);
 
 	glutSwapBuffers();	

@@ -13,6 +13,8 @@ public:
 	auto Bind() -> void;
 	auto Unbind() -> void;
 
+	auto Destroy() -> void;
+
 	inline auto Get() -> uint32_t { return _Program; }
 
 private:

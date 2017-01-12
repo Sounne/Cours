@@ -18,16 +18,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="basicShader.cpp">
+    <ClCompile Include="basic3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\common\GLShader.cpp">
-      <Filter>common</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\common\GLShader.h">
-      <Filter>common</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

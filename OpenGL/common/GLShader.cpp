@@ -32,7 +32,7 @@ auto GLShader::LoadShader(uint32_t type, const char* path) -> bool
 	auto begin = fileStream.tellg();
 
 	fileStream.seekg(0, std::ios::end);
-	uint32_t length = fileStream.tellg() - begin;
+	auto length = fileStream.tellg() - begin;
 
 	char* buffer = new char[length + 1];
 	fileStream.seekg(0, std::ios::beg);
@@ -79,6 +79,13 @@ auto GLShader::Create() -> bool
 		return false;
 	}
 	return true;
+}
+
+auto GLShader::Destroy() -> void
+{
+	glDeleteShader(_VertexShader);
+	glDeleteShader(_FragmentShader);
+	glDeleteProgram(_Program);
 }
 
 auto GLShader::Bind() -> void
