@@ -96,7 +96,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../libs;C:\Users\b.mazuc\Documents\Visual Studio 2015\Projects\OpenGL\libs\glew-2.0.0\include;C:\Users\b.mazuc\Documents\Visual Studio 2015\Projects\OpenGL\libs\freeglut\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../libs;C:\Users\e.sounou\Documents\Cours\OpenGL\libs\glew-2.0.0\include;C:\Users\e.sounou\Documents\Cours\OpenGL\libs\freeglut\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -129,7 +129,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../libs;C:\Users\b.mazuc\Documents\Visual Studio 2015\Projects\OpenGL\libs\glew-2.0.0\include;C:\Users\b.mazuc\Documents\Visual Studio 2015\Projects\OpenGL\libs\freeglut\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../libs;C:\Users\e.sounou\Documents\Cours\OpenGL\libs\glew-2.0.0\include;C:\Users\e.sounou\Documents\Cours\OpenGL\libs\freeglut\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
