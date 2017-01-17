@@ -103,7 +103,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../libs;..\libs\freeglut\include;..\libs\glew-2.0.0\include;..\libs\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../libs;../libs/freeglut/include;../libs/glew-2.0.0/include;../libs/GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,7 +139,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../libs;..\libs\freeglut\include;..\libs\glew-2.0.0\include;..\libs\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../libs;../libs/freeglut/include;../libs/glew-2.0.0/include;../libs/GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

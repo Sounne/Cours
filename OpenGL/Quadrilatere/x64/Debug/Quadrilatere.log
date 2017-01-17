@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\e.sounou\documents\cours\opengl\quadrilatere\dragondata.h(4): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+c:\users\e.sounou\documents\cours\opengl\quadrilatere\dragondata.h(4): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Quadrilatere.vcxproj -> C:\Users\e.sounou\Documents\Cours\OpenGL\x64\Debug\Quadrilatere.exe

@@ -151,6 +151,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="basic3D.cpp" />
+    <ClCompile Include="Lightning.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lightning.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
