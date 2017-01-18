@@ -1,17 +1,16 @@
-
 varying vec4 v_Position;
 varying vec2 v_TexCoords;
 varying vec3 v_Normal;
 varying mat4 modelMatrix;
 
 uniform sampler u_Texture;
-//uniform float u_power;
+uniform float u_power;
 
 struct Light
 {
     vec3 position;
     vec3 color;
-//    float power;
+    float power;
 }   light;
 
 void main(void)
