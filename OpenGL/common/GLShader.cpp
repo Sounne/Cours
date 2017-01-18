@@ -3,12 +3,11 @@
 #include <fstream>
 #include <iostream>
 
-#include "GL/glew.h"
+#include "glew-2.0.0/include/GL/glew.h"
 
 auto GLShader::LoadShader(uint32_t type, const char* path) -> bool
 {
 	// on presuppose type = GL_VERTEX_SHADER ou GL_FRAGMENT_SHADER
-
 	uint32_t shaderID;
 	shaderID = glCreateShader(type);
 
@@ -53,7 +52,7 @@ auto GLShader::LoadShader(uint32_t type, const char* path) -> bool
 		char errorBuffer[4096];
 		int error_len;
 		glGetShaderInfoLog(shaderID, 4096, &error_len, errorBuffer);
-		std::cout << "erreur dans le " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader : " << errorBuffer << std::endl;
+		std::cout << path << ", erreur dans le " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader : " << errorBuffer << std::endl;
 		return false;
 	}
 

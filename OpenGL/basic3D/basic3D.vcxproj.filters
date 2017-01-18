@@ -13,18 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{76440f4d-06b1-47ec-845b-73abf571a276}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="basic3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lightning.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\common\GLShader.cpp">
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lightning.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\common\GLShader.h">
+      <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,13 +1,9 @@
-// stb_sprintf - v1.02 - public domain snprintf() implementation
+// stb_sprintf - v1.01 - public domain snprintf() implementation
 // originally by Jeff Roberts / RAD Game Tools, 2015/10/20
 // http://github.com/nothings/stb
 //
 // allowed types:  sc uidBboXx p AaGgEef n
 // lengths      :  h ll j z t I64 I32 I
-//
-// Contributors (bugfixes):
-//    github:d26435
-//    github:trex78
 
 #ifndef STB_SPRINTF_H_INCLUDE
 #define STB_SPRINTF_H_INCLUDE
@@ -122,25 +118,16 @@ PERFORMANCE vs MSVC 2008 32-/64-bit (GCC is even slower than MSVC):
 "...512 char string..." ( 35.0x/32.5x faster!)
 */
 
-#if defined(__has_feature)
- #if __has_feature(address_sanitizer)
-  #define STBI__ASAN __attribute__((no_sanitize("address")))
- #endif
-#endif
-#ifndef STBI__ASAN
-#define STBI__ASAN
-#endif
-
 #ifdef STB_SPRINTF_STATIC
 #define STBSP__PUBLICDEC static
-#define STBSP__PUBLICDEF static STBI__ASAN
+#define STBSP__PUBLICDEF static
 #else
 #ifdef __cplusplus
 #define STBSP__PUBLICDEC extern "C"
-#define STBSP__PUBLICDEF extern "C" STBI__ASAN
+#define STBSP__PUBLICDEF extern "C"
 #else
-#define STBSP__PUBLICDEC extern
-#define STBSP__PUBLICDEF STBI__ASAN
+#define STBSP__PUBLICDEC extern 
+#define STBSP__PUBLICDEF
 #endif
 #endif
 
@@ -260,12 +247,9 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE( vsprintfcb )( STBSP_SPRINTFCB * callb
       } 
       for(;;)
       { 
-        // Check if the next 4 bytes contain %(0x25) or end of string.
-        // Using the 'hasless' trick:
-        // https://graphics.stanford.edu/~seander/bithacks.html#HasLessInWord
         stbsp__uint32 v,c;
         v=*(stbsp__uint32*)f; c=(~v)&0x80808080;
-        if (((v^0x25252525)-0x01010101)&c) goto schk1;
+        if ((v-0x26262626)&c) goto schk1; 
         if ((v-0x01010101)&c) goto schk2; 
         if (callback) if ((STB_SPRINTF_MIN-(int)(bf-buf))<4) goto schk1;
         *(stbsp__uint32*)bf=v; bf+=4; f+=4;
@@ -769,12 +753,9 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE( vsprintfcb )( STBSP_SPRINTFCB * callb
 
 STBSP__PUBLICDEF int STB_SPRINTF_DECORATE( sprintf )( char * buf, char const * fmt, ... )
 {
-  int result;
   va_list va;
   va_start( va, fmt );
-  result = STB_SPRINTF_DECORATE( vsprintfcb )( 0, 0, buf, fmt, va );
-  va_end(va);
-  return result;
+  return STB_SPRINTF_DECORATE( vsprintfcb )( 0, 0, buf, fmt, va );
 }
 
 typedef struct stbsp__context
@@ -830,14 +811,10 @@ STBSP__PUBLICDEF int STB_SPRINTF_DECORATE( vsnprintf )( char * buf, int count, c
 
 STBSP__PUBLICDEF int STB_SPRINTF_DECORATE( snprintf )( char * buf, int count, char const * fmt, ... )
 {
-  int result;
   va_list va;
   va_start( va, fmt );
 
-  result = STB_SPRINTF_DECORATE( vsnprintf )( buf, count, fmt, va );
-  va_end(va);
-
-  return result;
+  return STB_SPRINTF_DECORATE( vsnprintf )( buf, count, fmt, va );
 }
 
 STBSP__PUBLICDEF int STB_SPRINTF_DECORATE( vsprintf )( char * buf, char const * fmt, va_list va )

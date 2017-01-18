@@ -20,7 +20,7 @@
 
 //attention ce define ne doit etre specifie que dans 1 seul fichier cpp
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb/stb_image.h"
+#include "stb\stb_image.h"
 
 #define PI 3.14159265f
 
@@ -151,9 +151,9 @@ void KeyboardDown(unsigned char key, int x, int y)
 void MouseWheel(int button, int dir, int x, int y)
 {
 	if (dir > 0)
-		moveZ += speed * deltaTime;
+		moveZ += speed * deltaTime * 4;
 	else if (dir < 0)
-		moveZ -= speed * deltaTime;
+		moveZ -= speed * deltaTime * 4;
 }
 
 void Initialize()
@@ -310,6 +310,7 @@ void Render() {
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 1280, 720);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderBuffer);
 
+
 	glClearColor(0.f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -318,7 +319,7 @@ void Render() {
 	// sans inline la ligne precedente donnerait ceci:
 	// temp = CALL MEMBER FUNCTION GET of GLShader
 	// programID = temp
-	// avec inline : programID = BasicProgram._Program 
+	// avec inline : programID = BasicProgram._Program
 
 	glBindVertexArray(VAO);
 
@@ -342,8 +343,13 @@ void Render() {
 	auto textureLocation = glGetUniformLocation(basicProgramID, "u_Texture");
 	glUniform1i(textureLocation, texUnit);
 
-	//auto powerLocation = glGetUniformLocation(basicProgramID, "u_power");
-	//glUniform1f(powerLocation, lightPower);
+	auto powerLocation = glGetUniformLocation(basicProgramID, "u_power");
+	glUniform1f(powerLocation, lightPower);
+
+	auto camPosLocation = glGetUniformLocation(basicProgramID, "u_cam_pos");
+	glUniform3f(camPosLocation, moveX, moveY, moveZ);
+
+
 
 	glBindTexture(GL_TEXTURE_2D, TexDragon);
 
@@ -380,7 +386,6 @@ void Render() {
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 	glBlitFramebuffer(0, 0, windowWidth, windowHeight, 0, 0, windowWidth, windowHeight, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 	glBindTexture(GL_TEXTURE_2D, 0);*/
-
 	QuadProgram.Unbind();
 	glutSwapBuffers();	
 }
@@ -401,7 +406,7 @@ int main(int argc, char* argv[])
 	glutCreateWindow("basic 3D");
 	
 	Initialize();
-
+	
 	glutReshapeFunc(Resize);
 	glutIdleFunc(Update);
 	glutDisplayFunc(Render);
@@ -409,11 +414,9 @@ int main(int argc, char* argv[])
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE
 			, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 #endif
-
 	glutMainLoop();
 
 	Shutdown();
-
 
 	return 1;
 }

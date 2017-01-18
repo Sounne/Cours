@@ -64,8 +64,14 @@ auto Render() -> void
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	//glEnable(GL_CULL_FACE);
+
 	basicProgram.Bind();
 	uint32_t programId = basicProgram.Get();
+	//	sans inline la ligne precedente donnerait ceci :
+	//	temp = CALL MEMBER FUNCTION GET of GlShader
+	//	programId = temp
+	//	avec inline : programId = basicProgram._Program
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	auto positionLocation = glGetAttribLocation(programId, "a_Position");
@@ -80,11 +86,28 @@ auto Render() -> void
 	float timeInSeconds = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
 	auto timeLocation = glGetUniformLocation(programId, "u_Time");
 	glUniform1f(timeLocation, timeInSeconds);
+
+	// rendu en Array
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	// rendu par indices
+	// par mesure de precaution on "unbind" les IBO
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indices);
+
+	//idem mais avec un Index buffer (IBO)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+
+	// Seulement sur PC, Obligatoire pour utiliser gl_PointsSize
+	//glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
+
 	glDisableVertexAttribArray(colorLocation);
 	glDisableVertexAttribArray(positionLocation);
+
+	//glColorMask(false, true, true, true);
+
 	glutSwapBuffers();
 }
 
@@ -101,7 +124,7 @@ int main(int argc, char* argv[])
 
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE );
 
-	glutCreateWindow("Window");
+	glutCreateWindow("basic GL");
 	Initialize();
 
 	glutReshapeFunc(Resize);

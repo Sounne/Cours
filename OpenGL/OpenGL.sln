@@ -14,8 +14,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "basic3D", "basic3D\basic3D.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IsartLib", "IsartLib\IsartLib.vcxproj", "{D74C0AD7-3AB5-442D-9D40-DE1151147521}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quadrilatere", "Quadrilatere\Quadrilatere.vcxproj", "{34352E1F-1168-4BA2-A275-4B65431A6E91}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -56,14 +54,6 @@ Global
 		{D74C0AD7-3AB5-442D-9D40-DE1151147521}.Release|x64.Build.0 = Release|x64
 		{D74C0AD7-3AB5-442D-9D40-DE1151147521}.Release|x86.ActiveCfg = Release|Win32
 		{D74C0AD7-3AB5-442D-9D40-DE1151147521}.Release|x86.Build.0 = Release|Win32
-		{34352E1F-1168-4BA2-A275-4B65431A6E91}.Debug|x64.ActiveCfg = Debug|x64
-		{34352E1F-1168-4BA2-A275-4B65431A6E91}.Debug|x64.Build.0 = Debug|x64
-		{34352E1F-1168-4BA2-A275-4B65431A6E91}.Debug|x86.ActiveCfg = Debug|Win32
-		{34352E1F-1168-4BA2-A275-4B65431A6E91}.Debug|x86.Build.0 = Debug|Win32
-		{34352E1F-1168-4BA2-A275-4B65431A6E91}.Release|x64.ActiveCfg = Release|x64
-		{34352E1F-1168-4BA2-A275-4B65431A6E91}.Release|x64.Build.0 = Release|x64
-		{34352E1F-1168-4BA2-A275-4B65431A6E91}.Release|x86.ActiveCfg = Release|Win32
-		{34352E1F-1168-4BA2-A275-4B65431A6E91}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
