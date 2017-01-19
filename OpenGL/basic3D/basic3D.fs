@@ -17,15 +17,25 @@ struct Light
     vec3 position;
     vec3 colorD;
     vec3 colorS;
+    vec3 ambient_color;
     float power;
     float shininess;
+    float attenuation;
 } light;
+
+struct Material 
+{
+    vec2 texCoords;
+    vec3 diffuseColor;
+    vec3 specularColor;
+    vec4 texColor;
+} material;
 
 void main(void)
 {
     //light initialization
     light.position = vec3(0.0, -1.0, 0.0);
-    light.colorD = vec3(1.0, 0.0, 0.0);
+    light.colorD = vec3(0.5, 0.5, 0.5);
     light.colorS = vec3(1.0, 1.0, 1.0);
     light.power = u_power;
     light.shininess = 20.0;
@@ -49,11 +59,10 @@ void main(void)
     vec3 V = normalize(u_cam_pos - v_Position.xyz);
     vec3 R = reflect(direction, normal);
 
-    //vec3 R = normalize((direction+V)/2);
-
     float angle = dot(V, R);
 
-    vec3 specular_color = light.colorS * pow(max(angle, 0), light.shininess);
+    vec3 specular_color = light.colorS * gl_FrontFacing * pow(max(angle, 0), light.shininess);
+    vec3 color = light.colorD * light.power * texColor.rgb;
 
-    gl_FragColor = vec4(diffuse_color * texColor.rgb + specular_color, texColor.a);
+    gl_FragColor = vec4(color, texColor.a);
 }

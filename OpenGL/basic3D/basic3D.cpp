@@ -223,9 +223,11 @@ void Initialize()
 	auto positionLocation = glGetAttribLocation(basicProgramID, "a_Position");
 	glVertexAttribPointer(positionLocation, 3, GL_FLOAT, false, 8 * sizeof(float), 0);
 	glEnableVertexAttribArray(positionLocation);
+
 	auto normalLocation = glGetAttribLocation(basicProgramID, "a_Normal");
 	glVertexAttribPointer(normalLocation, 3, GL_FLOAT, false, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(normalLocation);
+
 	auto texCoordsLocation = glGetAttribLocation(basicProgramID, "a_TexCoords");
 	glVertexAttribPointer(texCoordsLocation, 2, GL_FLOAT, false, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 	glEnableVertexAttribArray(texCoordsLocation);
@@ -348,8 +350,6 @@ void Render() {
 
 	auto camPosLocation = glGetUniformLocation(basicProgramID, "u_cam_pos");
 	glUniform3f(camPosLocation, moveX, moveY, moveZ);
-
-
 
 	glBindTexture(GL_TEXTURE_2D, TexDragon);
 

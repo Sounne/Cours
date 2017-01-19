@@ -1,0 +1,4 @@
+﻿  basicFBO.cpp
+c:\users\e.sounou\documents\cours\projets opengl\basicfbo\dragondata.h(4): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+c:\users\e.sounou\documents\cours\projets opengl\basicfbo\dragondata.h(4): warning C4305: 'initializing': truncation from 'double' to 'float'
+  basicFBO.vcxproj -> C:\Users\e.sounou\Documents\Cours\Projets OpenGL\x64\Debug\basicFBO.exe
