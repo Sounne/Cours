@@ -25,5 +25,5 @@ private:
 	uint32_t _Program;
 	uint32_t _VertexShader;
 	uint32_t _FragmentShader;
-	
+	uint32_t _GeometryShader;
 };

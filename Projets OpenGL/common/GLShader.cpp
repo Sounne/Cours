@@ -19,6 +19,9 @@ bool GLShader::LoadShader(uint32_t type, const char* path)
 	case GL_FRAGMENT_SHADER:
 		_FragmentShader = shaderID;
 		break;
+	case GL_GEOMETRY_SHADER:
+		_GeometryShader = shaderID;
+			break;
 	default:
 		break;
 	}
@@ -60,6 +63,7 @@ bool GLShader::Create()
 	_Program = glCreateProgram();
 	glAttachShader(_Program, _VertexShader);
 	glAttachShader(_Program, _FragmentShader);
+	glAttachShader(_Program, _GeometryShader);
 	glLinkProgram(_Program);
 	// checker le resultat du linkage
 	int linkSuccess = 0;
