@@ -348,6 +348,9 @@ void Render() {
 	auto camPosLocation = glGetUniformLocation(basicProgramID, "u_cam_pos");
 	glUniform3f(camPosLocation, moveX, moveY, moveZ);
 
+	auto timeLocation = glGetUniformLocation(basicProgramID, "u_Time");
+	//glUniform3f(timeLocation, std::time)
+
 	glBindTexture(GL_TEXTURE_2D, TexDragon);
 
 	glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, nullptr);

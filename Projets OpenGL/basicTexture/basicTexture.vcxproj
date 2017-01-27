@@ -151,9 +151,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="basicTexture.cpp" />
+    <ClCompile Include="dds.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\GLShader.h" />
+    <ClInclude Include="dds.h" />
     <ClInclude Include="DragonData.h" />
   </ItemGroup>
   <ItemGroup>

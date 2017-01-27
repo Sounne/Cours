@@ -1,7 +1,9 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Geometry.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  GLShader.cpp
+  Generating Code...
+  Compiling...
   Geometry.cpp
 c:\users\e.sounou\documents\cours\opengl\geometry\dragondata.h(4): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
 c:\users\e.sounou\documents\cours\opengl\geometry\dragondata.h(4): warning C4305: 'initializing': truncation from 'double' to 'float'
-  GLShader.cpp
   Generating Code...
   Geometry.vcxproj -> C:\Users\e.sounou\Documents\Cours\OpenGL\x64\Debug\Geometry.exe

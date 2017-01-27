@@ -11,9 +11,11 @@
 
 #include <iostream>
 #include <cassert>
+#include <math.h>
 
 #include "GL/glew.h"
 #include "GL/freeglut.h"
+#include "dds.h"
 
 #include "../common/GLShader.h"
 
@@ -167,15 +169,11 @@ int main(int argc, char* argv[])
 	glutInit(&argc, argv);
 	glutInitWindowSize(1280, 720);
 	glutInitWindowPosition(100, 100);
-	// defini les buffers du framebuffer 
-	// GLUT_RGBA :  color buffer 32 bits
-	// GLUT_DOUBLE : double buffering
-	// GLUT_DEPTH : ajoute un buffer pour le depth test
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 
 	glutCreateWindow("basic Texture");
 	
-	Initialize();
+	//Initialize();
 	
 	glutReshapeFunc(Resize);
 	glutIdleFunc(Update);
@@ -186,7 +184,16 @@ int main(int argc, char* argv[])
 #endif
 	glutMainLoop();
 
-	Shutdown();
+	uint8_t  * output;
+	uint32_t width = 512;
+	uint32_t height = 512;
 
+	uint32_t image_dds = LoadImageDDS(&output, width, height, "mario.dds");
+	glCompressedTexImage2D(GL_TEXTURE_2D, 0, image_dds, width, height, 0, 170, &output);
+
+	FreeImageDDS(&output);
+
+	Shutdown();
+	
 	return 1;
 }

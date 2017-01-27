@@ -21,6 +21,9 @@
     <ClCompile Include="..\common\GLShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\GLShader.h">
@@ -28,6 +31,9 @@
     </ClInclude>
     <ClInclude Include="..\common\mat4.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dds.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

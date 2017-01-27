@@ -19,6 +19,9 @@ auto GLShader::LoadShader(uint32_t type, const char* path) -> bool
 		case GL_FRAGMENT_SHADER:
 			_FragmentShader = shaderID;
 			break;
+		case GL_GEOMETRY_SHADER:
+			_GeometryShader = shaderID;
+			break;
 		default: break;
 	}
 
